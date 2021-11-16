@@ -2,15 +2,13 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import client from "..";
 export default function Page({ long }) {
-  if (!long) {
-    return <div>404 Not Found</div>;
-  } else {
-    const router = useRouter();
-    useEffect(() => {
-      router.push(long);
-    }, []);
-    return <div>Redirecting to {long}...</div>;
-  }
+  const router = useRouter();
+  useEffect(() => {
+    if (long) router.push(long);
+    else return;
+  }, []);
+  if (long) return <div>Redirecting to {long}...</div>;
+  else return <div>404 Not Found</div>;
 }
 export async function getServerSideProps(context) {
   const coll = (await client).db("Data").collection("urls");

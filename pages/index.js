@@ -64,16 +64,16 @@ export default function Home({ shortUrls }) {
             </tr>
           </thead>
           <tbody>
-            {shortUrls.map(shortUrl => (
+            {shortUrls.map((shortUrl, i) => (
               <>
-                <tr>
-                  <td className="justify-content-center">
+                <tr key={i}>
+                  <td className="justify-content-center" key={i}>
                     <a href={shortUrl.full}>{shortUrl.full}</a>
                   </td>
-                  <td>
+                  <td key={i}>
                     <a href={shortUrl.short}>{shortUrl.short}</a>
                   </td>
-                  <td>{shortUrl.clicks}</td>
+                  <td key={i}>{shortUrl.clicks}</td>
                 </tr>
               </>
             ))}
