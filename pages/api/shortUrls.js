@@ -7,7 +7,7 @@ export default async function handler(req, res) {
       .sort({ metacritic: -1 })
       .limit(1)
       .toArray();
-    if (d.length) res.sendFile(process.cwd() + "/error.html");
+    if (d.length) res.status(404).send("Short URL already exists");
     const obj = {
       full: req.body.fullUrl,
       short: req.body.shortUrl,
